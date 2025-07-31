@@ -44,18 +44,24 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
     <div className="bg-white rounded-2xl shadow-2xl p-4 sm:p-6 lg:p-8 mx-2 sm:mx-4 -mt-12 relative z-10 border border-gray-100">
       <form
         onSubmit={handleSearch}
-        className="flex flex-col lg:flex-row gap-3 sm:gap-4"
+        className="flex flex-col lg:flex-row gap-4 sm:gap-6"
       >
+        {/* Destination Input */}
         <div className="flex-1 relative">
-          <MapPin className="absolute left-4 top-1/2 transform -translate-y-1/2 text-blue-500 w-5 h-5" />
-          <input
-            type="text"
-            placeholder="Where do you want to go? (e.g., Delhi, Goa, Manali)"
-            value={destination}
-            onChange={(e) => handleDestinationChange(e.target.value)}
-            onFocus={() => destination && setShowSuggestions(true)}
-            className="w-full pl-12 pr-4 py-3 sm:py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all text-gray-700 font-medium placeholder-gray-400 text-sm sm:text-base"
-          />
+          <label className="block text-sm font-semibold text-gray-700 mb-2">
+            Destination
+          </label>
+          <div className="relative">
+            <MapPin className="absolute left-4 top-1/2 transform -translate-y-1/2 text-blue-500 w-5 h-5" />
+            <input
+              type="text"
+              placeholder="Where do you want to go? (e.g., Delhi, Goa, Manali)"
+              value={destination}
+              onChange={(e) => handleDestinationChange(e.target.value)}
+              onFocus={() => destination && setShowSuggestions(true)}
+              className="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all text-gray-900 font-medium placeholder-gray-400 text-base"
+            />
+          </div>
 
           {/* Search Suggestions Dropdown */}
           {showSuggestions && filteredCities.length > 0 && (
@@ -79,51 +85,71 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
           )}
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 lg:flex-1">
+        {/* Date Inputs */}
+        <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 lg:flex-1">
           <div className="relative flex-1">
-            <Calendar className="absolute left-4 top-1/2 transform -translate-y-1/2 text-orange-500 w-5 h-5" />
-            <input
-              type="date"
-              value={checkIn}
-              onChange={(e) => setCheckIn(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 sm:py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition-all text-gray-700 font-medium text-sm sm:text-base"
-            />
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              Check In
+            </label>
+            <div className="relative">
+              <Calendar className="absolute left-4 top-1/2 transform -translate-y-1/2 text-orange-500 w-5 h-5" />
+              <input
+                type="date"
+                value={checkIn}
+                onChange={(e) => setCheckIn(e.target.value)}
+                className="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition-all text-gray-900 font-medium text-base bg-white"
+              />
+            </div>
           </div>
 
           <div className="relative flex-1">
-            <Calendar className="absolute left-4 top-1/2 transform -translate-y-1/2 text-orange-500 w-5 h-5" />
-            <input
-              type="date"
-              value={checkOut}
-              onChange={(e) => setCheckOut(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 sm:py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition-all text-gray-700 font-medium text-sm sm:text-base"
-            />
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              Check Out
+            </label>
+            <div className="relative">
+              <Calendar className="absolute left-4 top-1/2 transform -translate-y-1/2 text-orange-500 w-5 h-5" />
+              <input
+                type="date"
+                value={checkOut}
+                onChange={(e) => setCheckOut(e.target.value)}
+                className="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition-all text-gray-900 font-medium text-base bg-white"
+              />
+            </div>
           </div>
         </div>
 
+        {/* Guests Select */}
         <div className="relative">
-          <Users className="absolute left-4 top-1/2 transform -translate-y-1/2 text-green-500 w-5 h-5" />
-          <ChevronDown className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5 pointer-events-none" />
-          <select
-            value={guests}
-            onChange={(e) => setGuests(e.target.value)}
-            className="w-full pl-12 pr-12 py-3 sm:py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition-all appearance-none bg-white text-gray-700 font-medium text-sm sm:text-base"
-          >
-            <option value="1">1 Guest</option>
-            <option value="2">2 Guests</option>
-            <option value="3">3 Guests</option>
-            <option value="4">4 Guests</option>
-            <option value="5+">5+ Guests</option>
-          </select>
+          <label className="block text-sm font-semibold text-gray-700 mb-2">
+            Guests
+          </label>
+          <div className="relative">
+            <Users className="absolute left-4 top-1/2 transform -translate-y-1/2 text-green-500 w-5 h-5" />
+            <ChevronDown className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5 pointer-events-none" />
+            <select
+              value={guests}
+              onChange={(e) => setGuests(e.target.value)}
+              className="w-full pl-12 pr-12 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition-all appearance-none bg-white text-gray-900 font-medium text-base"
+            >
+              <option value="1">1 Guest</option>
+              <option value="2">2 Guests</option>
+              <option value="3">3 Guests</option>
+              <option value="4">4 Guests</option>
+              <option value="5+">5+ Guests</option>
+            </select>
+          </div>
         </div>
 
-        <button
-          type="submit"
-          className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 sm:px-10 py-3 sm:py-4 rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 flex items-center justify-center gap-2 sm:gap-3 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 hover:scale-105 text-sm sm:text-base"
-        >
-          <Search className="w-4 h-4 sm:w-5 sm:h-5" />
-          Search Trips
-        </button>
+        {/* Search Button */}
+        <div className="flex items-end">
+          <button
+            type="submit"
+            className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white px-8 py-4 rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 flex items-center justify-center gap-3 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 hover:scale-105 text-base"
+          >
+            <Search className="w-5 h-5" />
+            Search Trips
+          </button>
+        </div>
       </form>
     </div>
   );

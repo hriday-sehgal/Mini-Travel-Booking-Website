@@ -23,7 +23,239 @@ export class OpenRouterAPI {
     this.onTripSearch = callback;
   }
 
+  private isTravelRelatedQuery(userMessage: string): boolean {
+    const message = userMessage.toLowerCase();
+
+    // Travel-related keywords
+    const travelKeywords = [
+      // Destinations
+      "travel",
+      "trip",
+      "visit",
+      "destination",
+      "place",
+      "city",
+      "town",
+      "village",
+      "manali",
+      "goa",
+      "jaipur",
+      "kerala",
+      "shimla",
+      "udaipur",
+      "delhi",
+      "mumbai",
+      "varanasi",
+      "rishikesh",
+      "dharamshala",
+      "coorg",
+      "ooty",
+      "darjeeling",
+      "munnar",
+      "alleppey",
+      "thekkady",
+      "wayanad",
+      "jodhpur",
+      "jaisalmer",
+      "spiti",
+      "kashmir",
+      "ladakh",
+      "sikkim",
+      "assam",
+      "meghalaya",
+      "arunachal",
+      "nagaland",
+      "manipur",
+
+      // Accommodation
+      "hotel",
+      "resort",
+      "guesthouse",
+      "homestay",
+      "accommodation",
+      "stay",
+      "lodging",
+      "booking",
+      "reservation",
+      "room",
+      "suite",
+      "villa",
+      "cabin",
+      "camp",
+
+      // Activities and attractions
+      "attraction",
+      "sightseeing",
+      "tour",
+      "tourist",
+      "monument",
+      "fort",
+      "palace",
+      "temple",
+      "museum",
+      "park",
+      "garden",
+      "beach",
+      "mountain",
+      "hill",
+      "valley",
+      "river",
+      "lake",
+      "waterfall",
+      "forest",
+      "wildlife",
+      "sanctuary",
+      "national park",
+
+      // Travel planning
+      "plan",
+      "itinerary",
+      "schedule",
+      "route",
+      "journey",
+      "adventure",
+      "explore",
+      "discover",
+      "experience",
+      "vacation",
+      "holiday",
+      "getaway",
+      "escape",
+
+      // Transportation
+      "flight",
+      "train",
+      "bus",
+      "car",
+      "taxi",
+      "transport",
+      "travel",
+      "commute",
+      "airport",
+      "station",
+      "terminal",
+      "port",
+      "ferry",
+      "boat",
+      "cruise",
+
+      // Seasons and weather
+      "summer",
+      "winter",
+      "monsoon",
+      "rainy",
+      "season",
+      "weather",
+      "climate",
+      "hot",
+      "cold",
+      "warm",
+      "cool",
+      "temperature",
+
+      // Travel types
+      "adventure",
+      "trekking",
+      "hiking",
+      "camping",
+      "rafting",
+      "paragliding",
+      "yoga",
+      "meditation",
+      "spiritual",
+      "wellness",
+      "retreat",
+      "pilgrimage",
+      "heritage",
+      "cultural",
+      "historical",
+      "traditional",
+      "local",
+      "authentic",
+      "luxury",
+      "budget",
+      "backpacking",
+      "family",
+      "romantic",
+      "honeymoon",
+
+      // Food and dining
+      "food",
+      "cuisine",
+      "restaurant",
+      "dining",
+      "local food",
+      "street food",
+      "traditional",
+      "authentic",
+      "spice",
+      "flavor",
+      "taste",
+
+      // Shopping and markets
+      "shopping",
+      "market",
+      "bazaar",
+      "mall",
+      "store",
+      "shop",
+      "buy",
+      "purchase",
+      "souvenir",
+      "craft",
+      "handicraft",
+      "textile",
+      "jewelry",
+      "art",
+
+      // Travel services
+      "guide",
+      "tour guide",
+      "travel agent",
+      "package",
+      "deal",
+      "offer",
+      "discount",
+      "price",
+      "cost",
+      "budget",
+      "expensive",
+      "cheap",
+      "affordable",
+
+      // General travel terms
+      "india",
+      "indian",
+      "himalayas",
+      "rajasthan",
+      "kerala",
+      "goa",
+      "himachal",
+      "uttarakhand",
+      "tamil nadu",
+      "karnataka",
+      "maharashtra",
+      "gujarat",
+      "west bengal",
+      "assam",
+      "northeast",
+      "south india",
+      "north india",
+      "east india",
+      "west india",
+      "central india",
+    ];
+
+    // Check if any travel keyword is present in the message
+    return travelKeywords.some((keyword) => message.includes(keyword));
+  }
+
   async sendMessage(userMessage: string): Promise<string> {
+    // Check if the query is travel-related
+    if (!this.isTravelRelatedQuery(userMessage)) {
+      return "I'm a travel assistant focused on helping you plan trips to India. I can help you with:\n\n• Finding destinations and attractions\n• Hotel recommendations\n• Travel planning and itineraries\n• Seasonal travel advice\n• Adventure and spiritual journeys\n\nPlease ask me about travel-related topics!";
+    }
+
     // Handle trip searches first
     const message = userMessage.toLowerCase();
     if (message.includes("trip") || message.includes("show me")) {
@@ -46,7 +278,7 @@ export class OpenRouterAPI {
 
     // Always try AI first, only fallback if API fails
     try {
-      const systemPrompt = `You are an expert Indian travel assistant for TravelBook. Provide concise, well-formatted responses without emojis.
+      const systemPrompt = `You are an expert Indian travel assistant for TravelBook. You ONLY respond to travel-related queries about India. If a question is not travel-related, politely redirect the user to ask about travel topics.
 
 ## Response Guidelines:
 - Keep responses crisp and to the point (max 200-300 words)
@@ -56,6 +288,7 @@ export class OpenRouterAPI {
 - Focus on practical information travelers need
 - Suggest one follow-up question at the end
 - Do not include any asterisks or bold text.
+- ONLY answer travel-related questions about India
 
 ## Key Information to Include:
 - Top 3-4 hotels/attractions/activities
@@ -80,7 +313,7 @@ Where to Stay:
 
 Next Steps: What would you like to know about this destination?
 
-Answer ANY travel-related question about India with this format.`;
+IMPORTANT: Only answer travel-related questions about India. For non-travel queries, politely redirect to travel topics.`;
 
       const response = await fetch(
         "https://openrouter.ai/api/v1/chat/completions",

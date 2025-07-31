@@ -1,4 +1,4 @@
-# TravelBook - India Travel Booking Platform
+# TravelBook - Indian Travel Booking Platform
 
 A modern, responsive travel booking website for exploring destinations across India. Built with React, TypeScript, and Tailwind CSS.
 

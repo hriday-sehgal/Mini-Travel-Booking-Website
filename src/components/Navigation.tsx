@@ -6,7 +6,6 @@ import {
   MapPin,
   Menu,
   X,
-  User,
   Globe,
   Sparkles,
 } from "lucide-react";
@@ -74,8 +73,8 @@ const Navigation: React.FC<NavigationProps> = ({
             </div>
           </div>
 
-          {/* Enhanced Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-2">
+          {/* Left-shifted Desktop Navigation */}
+          <div className="hidden lg:flex items-center space-x-2 flex-1 justify-center">
             {navItems.map((item) => {
               const Icon = item.icon;
               return (
@@ -104,6 +103,7 @@ const Navigation: React.FC<NavigationProps> = ({
               );
             })}
           </div>
+          <div className="hidden lg:block w-28"></div>
 
           {/* Enhanced Right Side Actions */}
           <div className="flex items-center gap-3 sm:gap-4">

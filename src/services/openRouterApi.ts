@@ -326,7 +326,7 @@ IMPORTANT: Only answer travel-related questions about India. For non-travel quer
                 content: userMessage,
               },
             ],
-            max_tokens: 230,
+            max_tokens: 250,
             temperature: 0.5,
           }),
         }

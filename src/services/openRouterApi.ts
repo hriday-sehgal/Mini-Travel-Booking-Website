@@ -278,7 +278,6 @@ export class OpenRouterAPI {
 - Include essential details: prices, best time to visit, key attractions
 - No emojis - use clean, professional formatting
 - Focus on practical information travelers need
-- Suggest one follow-up question at the end
 - Do not include any asterisks or bold text.
 - ONLY answer travel-related questions about India
 
@@ -302,8 +301,6 @@ Top Attractions:
 Where to Stay:
 • Hotel 1 (₹X,000/night) - Location
 • Hotel 2 (₹X,000/night) - Location
-
-Next Steps: What would you like to know about this destination?
 
 IMPORTANT: Only answer travel-related questions about India. For non-travel queries, politely redirect to travel topics.`;
 

@@ -268,14 +268,6 @@ export class OpenRouterAPI {
       }
     }
 
-    // Debug logging
-    console.log("🔍 Debug Info:");
-    console.log("API Key exists:", !!this.apiKey);
-    console.log("API Key length:", this.apiKey?.length);
-    console.log("Site URL:", this.siteUrl);
-    console.log("Site Name:", this.siteName);
-    console.log("User Message:", userMessage);
-
     // Always try AI first, only fallback if API fails
     try {
       const systemPrompt = `You are an expert Indian travel assistant for TravelBook. You ONLY respond to travel-related queries about India. If a question is not travel-related, politely redirect the user to ask about travel topics.
@@ -337,41 +329,29 @@ IMPORTANT: Only answer travel-related questions about India. For non-travel quer
                 content: userMessage,
               },
             ],
-            max_tokens: 250,
-            temperature: 0.5,
+            max_tokens: 200,
+            temperature: 0.4,
           }),
         }
       );
 
       if (!response.ok) {
-        console.error(
-          "❌ API Response not OK:",
-          response.status,
-          response.statusText
-        );
         const errorText = await response.text();
-        console.error("❌ Error response:", errorText);
         throw new Error(
           `API request failed: ${response.status} - ${errorText}`
         );
       }
 
       const data: OpenRouterResponse = await response.json();
-      console.log("✅ AI Response received:", data);
 
       const aiResponse = data.choices[0]?.message?.content;
-      console.log("📝 AI Response content:", aiResponse);
 
       if (aiResponse && aiResponse.trim()) {
-        console.log("✅ Using AI response");
         return aiResponse;
       } else {
-        console.error("❌ Empty AI response");
         throw new Error("Empty response from AI");
       }
-    } catch (error) {
-      console.error("❌ OpenRouter API error:", error);
-      console.log("🔄 Falling back to local responses...");
+    } catch {
       return this.getFallbackResponse(userMessage);
     }
   }

@@ -1,12 +1,16 @@
 import React from "react";
-import { MapPin, Clock } from "lucide-react";
+import { MapPin, Clock, Eye } from "lucide-react";
 import { Attraction } from "../data/mockData";
 
 interface AttractionCardProps {
   attraction: Attraction;
+  onViewDetails?: () => void;
 }
 
-const AttractionCard: React.FC<AttractionCardProps> = ({ attraction }) => {
+const AttractionCard: React.FC<AttractionCardProps> = ({
+  attraction,
+  onViewDetails,
+}) => {
   return (
     <div className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 group">
       <div className="relative">
@@ -42,9 +46,20 @@ const AttractionCard: React.FC<AttractionCardProps> = ({ attraction }) => {
           {attraction.description}
         </p>
 
-        <button className="w-full bg-gradient-to-r from-orange-500 to-pink-500 text-white py-3 rounded-xl hover:from-orange-600 hover:to-pink-600 transition-all duration-300 font-bold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
-          View Details
-        </button>
+        <div className="flex gap-2">
+          {onViewDetails && (
+            <button
+              onClick={onViewDetails}
+              className="flex-1 bg-blue-100 hover:bg-blue-200 text-blue-700 py-3 rounded-lg transition-colors font-medium flex items-center justify-center gap-1"
+            >
+              <Eye className="w-4 h-4" />
+              Details
+            </button>
+          )}
+          <button className="flex-1 bg-gradient-to-r from-orange-500 to-pink-500 text-white py-3 rounded-lg hover:from-orange-600 hover:to-pink-600 transition-all duration-300 font-bold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+            Plan Visit
+          </button>
+        </div>
       </div>
     </div>
   );

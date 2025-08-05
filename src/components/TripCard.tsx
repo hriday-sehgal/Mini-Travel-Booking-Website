@@ -1,18 +1,20 @@
 import React from "react";
-import { Star, Clock, MapPin } from "lucide-react";
+import { Star, Clock, MapPin, Eye } from "lucide-react";
 import { Trip } from "../data/mockData";
 
 interface TripCardProps {
   trip: Trip;
   onClick: () => void;
+  onViewDetails?: () => void;
 }
 
-const TripCard: React.FC<TripCardProps> = ({ trip, onClick }) => {
+const TripCard: React.FC<TripCardProps> = ({
+  trip,
+  onClick,
+  onViewDetails,
+}) => {
   return (
-    <div
-      onClick={onClick}
-      className="bg-white rounded-2xl shadow-xl overflow-hidden cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl group border border-gray-100"
-    >
+    <div className="bg-white rounded-2xl shadow-xl overflow-hidden cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl group border border-gray-100">
       <div className="relative overflow-hidden">
         <img
           src={trip.image}
@@ -59,9 +61,29 @@ const TripCard: React.FC<TripCardProps> = ({ trip, onClick }) => {
               per person
             </span>
           </div>
-          <button className="bg-gradient-to-r from-orange-500 to-pink-500 text-white px-6 py-3 rounded-xl hover:from-orange-600 hover:to-pink-600 transition-all duration-300 font-bold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
-            Book Now
-          </button>
+          <div className="flex gap-2">
+            {onViewDetails && (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onViewDetails();
+                }}
+                className="bg-blue-100 hover:bg-blue-200 text-blue-700 px-4 py-2 rounded-lg transition-colors font-medium flex items-center gap-1"
+              >
+                <Eye className="w-4 h-4" />
+                Details
+              </button>
+            )}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onClick();
+              }}
+              className="bg-gradient-to-r from-orange-500 to-pink-500 text-white px-6 py-2 rounded-lg hover:from-orange-600 hover:to-pink-600 transition-all duration-300 font-bold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+            >
+              Book Now
+            </button>
+          </div>
         </div>
       </div>
     </div>

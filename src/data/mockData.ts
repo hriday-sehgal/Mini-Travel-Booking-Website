@@ -112,6 +112,84 @@ export const trips: Trip[] = [
     rating: 4.8,
     category: "Heritage",
   },
+  {
+    id: "7",
+    title: "Rishikesh River Rafting",
+    city: "Rishikesh",
+    duration: "3 Days 2 Nights",
+    price: 8999,
+    description:
+      "Adventure capital of India with white water rafting, yoga, and spiritual experiences.",
+    image:
+      "https://images.pexels.com/photos/2387866/pexels-photo-2387866.jpeg?auto=compress&cs=tinysrgb&w=500",
+    rating: 4.4,
+    category: "Adventure",
+  },
+  {
+    id: "8",
+    title: "Darjeeling Tea Gardens",
+    city: "Darjeeling",
+    duration: "4 Days 3 Nights",
+    price: 14999,
+    description:
+      "Explore the Queen of Hills with tea gardens, toy train, and Himalayan views.",
+    image:
+      "https://images.pexels.com/photos/1586298/pexels-photo-1586298.jpeg?auto=compress&cs=tinysrgb&w=500",
+    rating: 4.5,
+    category: "Hill Station",
+  },
+  {
+    id: "9",
+    title: "Varanasi Spiritual Journey",
+    city: "Varanasi",
+    duration: "3 Days 2 Nights",
+    price: 7999,
+    description:
+      "Experience the spiritual capital with Ganga Aarti, ancient temples, and cultural heritage.",
+    image:
+      "https://images.pexels.com/photos/1098460/pexels-photo-1098460.jpeg?auto=compress&cs=tinysrgb&w=500",
+    rating: 4.6,
+    category: "Spiritual",
+  },
+  {
+    id: "10",
+    title: "Mumbai City Lights",
+    city: "Mumbai",
+    duration: "3 Days 2 Nights",
+    price: 12999,
+    description:
+      "Explore the city that never sleeps with Bollywood, Gateway of India, and Marine Drive.",
+    image:
+      "https://images.pexels.com/photos/1287460/pexels-photo-1287460.jpeg?auto=compress&cs=tinysrgb&w=500",
+    rating: 4.3,
+    category: "City",
+  },
+  {
+    id: "11",
+    title: "Agra Taj Mahal",
+    city: "Agra",
+    duration: "2 Days 1 Night",
+    price: 6999,
+    description:
+      "Witness the wonder of the world - Taj Mahal, along with Agra Fort and Fatehpur Sikri.",
+    image:
+      "https://images.pexels.com/photos/1450353/pexels-photo-1450353.jpeg?auto=compress&cs=tinysrgb&w=500",
+    rating: 4.7,
+    category: "Heritage",
+  },
+  {
+    id: "12",
+    title: "Ooty Nilgiri Hills",
+    city: "Ooty",
+    duration: "4 Days 3 Nights",
+    price: 13999,
+    description:
+      "Queen of Hill Stations with botanical gardens, tea estates, and scenic beauty.",
+    image:
+      "https://images.pexels.com/photos/962464/pexels-photo-962464.jpeg?auto=compress&cs=tinysrgb&w=500",
+    rating: 4.4,
+    category: "Hill Station",
+  },
 ];
 
 export const hotels: Hotel[] = [
@@ -145,8 +223,7 @@ export const hotels: Hotel[] = [
     city: "Jaipur",
     pricePerNight: 4200,
     rating: 4.6,
-    image:
-      "https://images.pexels.com/photos/8180457/pexels-photo-8180457.jpeg",
+    image: "https://images.pexels.com/photos/8180457/pexels-photo-8180457.jpeg",
     description:
       "Royal experience in a heritage property with traditional architecture.",
     amenities: ["Heritage Property", "Restaurant", "Cultural Shows", "Garden"],
@@ -188,6 +265,90 @@ export const hotels: Hotel[] = [
     description: "Luxury resort overlooking Lake Pichola with royal suites.",
     amenities: ["Lake Views", "Royal Suites", "Fine Dining", "Boat Service"],
     location: "Lake Pichola",
+  },
+  {
+    id: "7",
+    name: "Riverside Retreat",
+    city: "Rishikesh",
+    pricePerNight: 1800,
+    rating: 4.3,
+    image:
+      "https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&w=500",
+    description: "Eco-friendly resort by the Ganges with yoga and meditation.",
+    amenities: ["Yoga Classes", "Riverside", "Organic Food", "Meditation"],
+    location: "Laxman Jhula",
+  },
+  {
+    id: "8",
+    name: "Tea Garden Hotel",
+    city: "Darjeeling",
+    pricePerNight: 3200,
+    rating: 4.5,
+    image:
+      "https://images.pexels.com/photos/1579253/pexels-photo-1579253.jpeg?auto=compress&cs=tinysrgb&w=500",
+    description:
+      "Colonial-style hotel surrounded by tea gardens and mountain views.",
+    amenities: ["Tea Garden", "Mountain Views", "Restaurant", "Toy Train"],
+    location: "Mall Road",
+  },
+  {
+    id: "9",
+    name: "Ghat View Hotel",
+    city: "Varanasi",
+    pricePerNight: 2500,
+    rating: 4.2,
+    image: "https://images.pexels.com/photos/8180457/pexels-photo-8180457.jpeg",
+    description: "Hotel with views of the sacred Ganges and ancient ghats.",
+    amenities: [
+      "Ghat Views",
+      "Spiritual Tours",
+      "Restaurant",
+      "Cultural Shows",
+    ],
+    location: "Dashashwamedh Ghat",
+  },
+  {
+    id: "10",
+    name: "Marine Drive Hotel",
+    city: "Mumbai",
+    pricePerNight: 4500,
+    rating: 4.4,
+    image:
+      "https://images.pexels.com/photos/1743373/pexels-photo-1743373.jpeg?auto=compress&cs=tinysrgb&w=500",
+    description: "Luxury hotel with views of the Arabian Sea and city skyline.",
+    amenities: ["Sea Views", "Rooftop Pool", "Fine Dining", "Spa"],
+    location: "Marine Drive",
+  },
+  {
+    id: "11",
+    name: "Taj View Hotel",
+    city: "Agra",
+    pricePerNight: 3800,
+    rating: 4.6,
+    image:
+      "https://images.pexels.com/photos/1450353/pexels-photo-1450353.jpeg?auto=compress&cs=tinysrgb&w=500",
+    description:
+      "Hotel with spectacular views of the Taj Mahal from every room.",
+    amenities: ["Taj Views", "Restaurant", "Garden", "Cultural Tours"],
+    location: "Taj Ganj",
+  },
+  {
+    id: "12",
+    name: "Botanical Garden Resort",
+    city: "Ooty",
+    pricePerNight: 2900,
+    rating: 4.3,
+    image:
+      "https://images.pexels.com/photos/1579253/pexels-photo-1579253.jpeg?auto=compress&cs=tinysrgb&w=500",
+    description:
+      "Resort near the famous botanical gardens with colonial charm.",
+    amenities: [
+      "Garden Views",
+      "Colonial Architecture",
+      "Restaurant",
+      "Tea Estate",
+    ],
+    location: "Botanical Gardens",
   },
 ];
 
@@ -232,8 +393,7 @@ export const attractions: Attraction[] = [
     id: "4",
     name: "Munnar Tea Gardens",
     city: "Kerala",
-    image:
-      "https://images.pexels.com/photos/3848200/pexels-photo-3848200.jpeg",
+    image: "https://images.pexels.com/photos/3848200/pexels-photo-3848200.jpeg",
     description:
       "Rolling hills covered with lush tea plantations and scenic beauty.",
     location: "Munnar, Kerala",
@@ -263,5 +423,77 @@ export const attractions: Attraction[] = [
     location: "City Palace Complex",
     category: "Heritage",
     timings: "9:00 AM - 5:00 PM",
+  },
+  {
+    id: "7",
+    name: "Laxman Jhula",
+    city: "Rishikesh",
+    image:
+      "https://images.pexels.com/photos/2387866/pexels-photo-2387866.jpeg?auto=compress&cs=tinysrgb&w=500",
+    description:
+      "Iconic suspension bridge over the Ganges with spiritual significance.",
+    location: "Rishikesh",
+    category: "Spiritual",
+    timings: "24 Hours",
+  },
+  {
+    id: "8",
+    name: "Tiger Hill",
+    city: "Darjeeling",
+    image:
+      "https://images.pexels.com/photos/1586298/pexels-photo-1586298.jpeg?auto=compress&cs=tinysrgb&w=500",
+    description:
+      "Famous viewpoint for sunrise over Kanchenjunga and Himalayan peaks.",
+    location: "Darjeeling",
+    category: "Scenic",
+    timings: "4:00 AM - 8:00 AM",
+  },
+  {
+    id: "9",
+    name: "Dashashwamedh Ghat",
+    city: "Varanasi",
+    image:
+      "https://images.pexels.com/photos/1098460/pexels-photo-1098460.jpeg?auto=compress&cs=tinysrgb&w=500",
+    description:
+      "Most sacred ghat where the famous Ganga Aarti ceremony takes place.",
+    location: "Varanasi",
+    category: "Spiritual",
+    timings: "5:00 AM - 9:00 PM",
+  },
+  {
+    id: "10",
+    name: "Gateway of India",
+    city: "Mumbai",
+    image:
+      "https://images.pexels.com/photos/1287460/pexels-photo-1287460.jpeg?auto=compress&cs=tinysrgb&w=500",
+    description:
+      "Historic monument and popular tourist spot overlooking the Arabian Sea.",
+    location: "Colaba, Mumbai",
+    category: "Heritage",
+    timings: "24 Hours",
+  },
+  {
+    id: "11",
+    name: "Taj Mahal",
+    city: "Agra",
+    image:
+      "https://images.pexels.com/photos/1450353/pexels-photo-1450353.jpeg?auto=compress&cs=tinysrgb&w=500",
+    description:
+      "Iconic white marble mausoleum, one of the Seven Wonders of the World.",
+    location: "Agra",
+    category: "Heritage",
+    timings: "6:00 AM - 7:00 PM",
+  },
+  {
+    id: "12",
+    name: "Ooty Botanical Gardens",
+    city: "Ooty",
+    image:
+      "https://images.pexels.com/photos/962464/pexels-photo-962464.jpeg?auto=compress&cs=tinysrgb&w=500",
+    description:
+      "Beautiful gardens with rare plants, glasshouse, and colonial architecture.",
+    location: "Ooty",
+    category: "Nature",
+    timings: "7:00 AM - 6:30 PM",
   },
 ];

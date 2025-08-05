@@ -1,12 +1,13 @@
 import React from "react";
-import { Star, MapPin, Wifi, Car, Coffee, Waves } from "lucide-react";
+import { Star, MapPin, Wifi, Car, Coffee, Waves, Eye } from "lucide-react";
 import { Hotel } from "../data/mockData";
 
 interface HotelCardProps {
   hotel: Hotel;
+  onViewDetails?: () => void;
 }
 
-const HotelCard: React.FC<HotelCardProps> = ({ hotel }) => {
+const HotelCard: React.FC<HotelCardProps> = ({ hotel, onViewDetails }) => {
   const getAmenityIcon = (amenity: string) => {
     switch (amenity.toLowerCase()) {
       case "wifi":
@@ -76,9 +77,20 @@ const HotelCard: React.FC<HotelCardProps> = ({ hotel }) => {
               <span className="text-sm text-gray-500 font-normal">/night</span>
             </span>
           </div>
-          <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-bold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
-            Book Hotel
-          </button>
+          <div className="flex gap-2">
+            {onViewDetails && (
+              <button
+                onClick={onViewDetails}
+                className="bg-blue-100 hover:bg-blue-200 text-blue-700 px-4 py-2 rounded-lg transition-colors font-medium flex items-center gap-1"
+              >
+                <Eye className="w-4 h-4" />
+                Details
+              </button>
+            )}
+            <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-bold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+              Book Hotel
+            </button>
+          </div>
         </div>
       </div>
     </div>

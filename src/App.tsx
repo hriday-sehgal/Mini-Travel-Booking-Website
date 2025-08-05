@@ -7,12 +7,26 @@ import TripCard from "./components/TripCard";
 import HotelCard from "./components/HotelCard";
 import AttractionCard from "./components/AttractionCard";
 import Chatbot from "./components/Chatbot";
-import { trips, hotels, attractions } from "./data/mockData";
+import TripDetails from "./components/TripDetails";
+import HotelDetails from "./components/HotelDetails";
+import AttractionDetails from "./components/AttractionDetails";
+import {
+  trips,
+  hotels,
+  attractions,
+  Trip,
+  Hotel as HotelType,
+  Attraction,
+} from "./data/mockData";
 
 function App() {
   const [activeSection, setActiveSection] = useState("home");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCity, setSelectedCity] = useState("");
+  const [selectedTrip, setSelectedTrip] = useState<Trip | null>(null);
+  const [selectedHotel, setSelectedHotel] = useState<HotelType | null>(null);
+  const [selectedAttraction, setSelectedAttraction] =
+    useState<Attraction | null>(null);
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
@@ -24,6 +38,30 @@ function App() {
     setSelectedCity(city);
     setSearchQuery(city);
     setActiveSection("trips");
+  };
+
+  const handleViewTripDetails = (trip: Trip) => {
+    setSelectedTrip(trip);
+  };
+
+  const handleCloseTripDetails = () => {
+    setSelectedTrip(null);
+  };
+
+  const handleViewHotelDetails = (hotel: HotelType) => {
+    setSelectedHotel(hotel);
+  };
+
+  const handleCloseHotelDetails = () => {
+    setSelectedHotel(null);
+  };
+
+  const handleViewAttractionDetails = (attraction: Attraction) => {
+    setSelectedAttraction(attraction);
+  };
+
+  const handleCloseAttractionDetails = () => {
+    setSelectedAttraction(null);
   };
 
   const filteredTrips = useMemo(() => {
@@ -79,6 +117,7 @@ function App() {
                 setSelectedCity(trip.city);
                 setActiveSection("trips");
               }}
+              onViewDetails={() => handleViewTripDetails(trip)}
             />
           ))}
         </div>
@@ -104,7 +143,11 @@ function App() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
             {hotels.slice(0, 3).map((hotel) => (
-              <HotelCard key={hotel.id} hotel={hotel} />
+              <HotelCard
+                key={hotel.id}
+                hotel={hotel}
+                onViewDetails={() => handleViewHotelDetails(hotel)}
+              />
             ))}
           </div>
         </div>
@@ -130,7 +173,11 @@ function App() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
           {attractions.slice(0, 6).map((attraction) => (
-            <AttractionCard key={attraction.id} attraction={attraction} />
+            <AttractionCard
+              key={attraction.id}
+              attraction={attraction}
+              onViewDetails={() => handleViewAttractionDetails(attraction)}
+            />
           ))}
         </div>
       </section>
@@ -165,6 +212,7 @@ function App() {
             key={trip.id}
             trip={trip}
             onClick={() => setSelectedCity(trip.city)}
+            onViewDetails={() => handleViewTripDetails(trip)}
           />
         ))}
       </div>
@@ -207,7 +255,11 @@ function App() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
         {filteredHotels.map((hotel) => (
-          <HotelCard key={hotel.id} hotel={hotel} />
+          <HotelCard
+            key={hotel.id}
+            hotel={hotel}
+            onViewDetails={() => handleViewHotelDetails(hotel)}
+          />
         ))}
       </div>
 
@@ -249,7 +301,11 @@ function App() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
         {filteredAttractions.map((attraction) => (
-          <AttractionCard key={attraction.id} attraction={attraction} />
+          <AttractionCard
+            key={attraction.id}
+            attraction={attraction}
+            onViewDetails={() => handleViewAttractionDetails(attraction)}
+          />
         ))}
       </div>
 
@@ -287,6 +343,21 @@ function App() {
       {activeSection === "attractions" && renderAttractionsSection()}
 
       <Chatbot onTripSearch={handleChatbotTripSearch} />
+
+      {selectedTrip && (
+        <TripDetails trip={selectedTrip} onClose={handleCloseTripDetails} />
+      )}
+
+      {selectedHotel && (
+        <HotelDetails hotel={selectedHotel} onClose={handleCloseHotelDetails} />
+      )}
+
+      {selectedAttraction && (
+        <AttractionDetails
+          attraction={selectedAttraction}
+          onClose={handleCloseAttractionDetails}
+        />
+      )}
 
       {/* Footer */}
       <footer className="bg-gradient-to-br from-gray-100 via-blue-50 to-purple-50 text-gray-800 py-16 mt-20">

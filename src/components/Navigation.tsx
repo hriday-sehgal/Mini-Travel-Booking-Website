@@ -8,6 +8,7 @@ import {
   X,
   Globe,
   Sparkles,
+  Plane,
 } from "lucide-react";
 
 interface NavigationProps {
@@ -26,6 +27,7 @@ const Navigation: React.FC<NavigationProps> = ({
     { id: "trips", label: "Trips", icon: Search },
     { id: "hotels", label: "Hotels", icon: Hotel },
     { id: "attractions", label: "Attractions", icon: MapPin },
+    { id: "travel", label: "Travel", icon: Plane },
   ];
 
   return (

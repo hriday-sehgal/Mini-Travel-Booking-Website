@@ -6,17 +6,21 @@ import SearchBar from "./components/SearchBar";
 import TripCard from "./components/TripCard";
 import HotelCard from "./components/HotelCard";
 import AttractionCard from "./components/AttractionCard";
+import TravelCard from "./components/TravelCard";
 import Chatbot from "./components/Chatbot";
 import TripDetails from "./components/TripDetails";
 import HotelDetails from "./components/HotelDetails";
 import AttractionDetails from "./components/AttractionDetails";
+import TravelDetails from "./components/TravelDetails";
 import {
   trips,
   hotels,
   attractions,
+  travel,
   Trip,
   Hotel as HotelType,
   Attraction,
+  Travel as TravelType,
 } from "./data/mockData";
 
 function App() {
@@ -27,6 +31,7 @@ function App() {
   const [selectedHotel, setSelectedHotel] = useState<HotelType | null>(null);
   const [selectedAttraction, setSelectedAttraction] =
     useState<Attraction | null>(null);
+  const [selectedTravel, setSelectedTravel] = useState<TravelType | null>(null);
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
@@ -64,6 +69,14 @@ function App() {
     setSelectedAttraction(null);
   };
 
+  const handleViewTravelDetails = (travel: TravelType) => {
+    setSelectedTravel(travel);
+  };
+
+  const handleCloseTravelDetails = () => {
+    setSelectedTravel(null);
+  };
+
   const filteredTrips = useMemo(() => {
     if (!searchQuery && !selectedCity) return trips;
     const query = searchQuery || selectedCity;
@@ -85,6 +98,15 @@ function App() {
     if (!selectedCity) return attractions;
     return attractions.filter((attraction) =>
       attraction.city.toLowerCase().includes(selectedCity.toLowerCase())
+    );
+  }, [selectedCity]);
+
+  const filteredTravel = useMemo(() => {
+    if (!selectedCity) return travel;
+    return travel.filter(
+      (t) =>
+        t.from.toLowerCase().includes(selectedCity.toLowerCase()) ||
+        t.to.toLowerCase().includes(selectedCity.toLowerCase())
     );
   }, [selectedCity]);
 
@@ -177,6 +199,32 @@ function App() {
               key={attraction.id}
               attraction={attraction}
               onViewDetails={() => handleViewAttractionDetails(attraction)}
+            />
+          ))}
+        </div>
+      </section>
+
+      {/* Travel Options */}
+      <section className="container mx-auto px-4 py-8">
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center gap-2 bg-blue-50 px-4 py-2 rounded-full mb-4">
+            <Plane className="w-5 h-5 text-blue-600" />
+            <span className="text-blue-600 font-semibold">Travel Options</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 px-4">
+            Travel Options
+          </h2>
+          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4">
+            Find the best flights, trains, and buses to reach your destination
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
+          {travel.slice(0, 6).map((travel) => (
+            <TravelCard
+              key={travel.id}
+              travel={travel}
+              onViewDetails={() => handleViewTravelDetails(travel)}
             />
           ))}
         </div>
@@ -323,6 +371,54 @@ function App() {
     </div>
   );
 
+  const renderTravelSection = () => (
+    <div className="container mx-auto px-4 py-12">
+      <div className="text-center mb-8">
+        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 px-4">
+          {selectedCity
+            ? `Travel to/from ${selectedCity}`
+            : "All Travel Options"}
+        </h2>
+        <p className="text-lg sm:text-xl text-gray-600 mb-2 px-4">
+          {filteredTravel.length} travel options available
+        </p>
+        {selectedCity && (
+          <button
+            onClick={() => {
+              setSelectedCity("");
+              setSearchQuery("");
+            }}
+            className="text-blue-600 hover:text-blue-700 font-medium underline"
+          >
+            View all travel options
+          </button>
+        )}
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
+        {filteredTravel.map((travel) => (
+          <TravelCard
+            key={travel.id}
+            travel={travel}
+            onViewDetails={() => handleViewTravelDetails(travel)}
+          />
+        ))}
+      </div>
+
+      {filteredTravel.length === 0 && (
+        <div className="text-center py-20">
+          <div className="text-6xl mb-4">✈️</div>
+          <p className="text-2xl text-gray-500 mb-4">
+            No travel options found for your search
+          </p>
+          <p className="text-gray-400">
+            Try searching for popular cities like Mumbai, Delhi, or Bangalore!
+          </p>
+        </div>
+      )}
+    </div>
+  );
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50/30">
       <Navigation
@@ -341,6 +437,7 @@ function App() {
       {activeSection === "trips" && renderTripsSection()}
       {activeSection === "hotels" && renderHotelsSection()}
       {activeSection === "attractions" && renderAttractionsSection()}
+      {activeSection === "travel" && renderTravelSection()}
 
       <Chatbot onTripSearch={handleChatbotTripSearch} />
 
@@ -356,6 +453,13 @@ function App() {
         <AttractionDetails
           attraction={selectedAttraction}
           onClose={handleCloseAttractionDetails}
+        />
+      )}
+
+      {selectedTravel && (
+        <TravelDetails
+          travel={selectedTravel}
+          onClose={handleCloseTravelDetails}
         />
       )}
 

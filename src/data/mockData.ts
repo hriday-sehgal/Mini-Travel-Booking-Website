@@ -33,6 +33,24 @@ export interface Attraction {
   timings: string;
 }
 
+export interface Travel {
+  id: string;
+  from: string;
+  to: string;
+  type: "Flight" | "Bus" | "Train";
+  operator: string;
+  departureTime: string;
+  arrivalTime: string;
+  duration: string;
+  price: number;
+  rating: number;
+  image: string;
+  description: string;
+  amenities: string[];
+  departureStation: string;
+  arrivalStation: string;
+}
+
 export const trips: Trip[] = [
   {
     id: "1",
@@ -495,5 +513,224 @@ export const attractions: Attraction[] = [
     location: "Ooty",
     category: "Nature",
     timings: "7:00 AM - 6:30 PM",
+  },
+];
+
+export const travel: Travel[] = [
+  {
+    id: "1",
+    from: "Mumbai",
+    to: "Delhi",
+    type: "Flight",
+    operator: "Air India",
+    departureTime: "08:30 AM",
+    arrivalTime: "10:45 AM",
+    duration: "2h 15m",
+    price: 8500,
+    rating: 4.3,
+    image:
+      "https://images.pexels.com/photos/46148/aircraft-jet-landing-cloud-46148.jpeg?auto=compress&cs=tinysrgb&w=500",
+    description: "Direct flight with meal service and entertainment.",
+    amenities: ["Meal", "Entertainment", "WiFi", "Priority Boarding"],
+    departureStation: "Mumbai Airport (BOM)",
+    arrivalStation: "Delhi Airport (DEL)",
+  },
+  {
+    id: "2",
+    from: "Delhi",
+    to: "Mumbai",
+    type: "Flight",
+    operator: "IndiGo",
+    departureTime: "06:15 AM",
+    arrivalTime: "08:30 AM",
+    duration: "2h 15m",
+    price: 7200,
+    rating: 4.1,
+    image:
+      "https://images.pexels.com/photos/164589/pexels-photo-164589.jpeg?auto=compress&cs=tinysrgb&w=500",
+    description: "Budget-friendly flight with excellent service.",
+    amenities: ["Snack", "Entertainment", "WiFi"],
+    departureStation: "Delhi Airport (DEL)",
+    arrivalStation: "Mumbai Airport (BOM)",
+  },
+  {
+    id: "3",
+    from: "Mumbai",
+    to: "Goa",
+    type: "Flight",
+    operator: "Vistara",
+    departureTime: "10:00 AM",
+    arrivalTime: "11:15 AM",
+    duration: "1h 15m",
+    price: 4500,
+    rating: 4.5,
+    image:
+      "https://images.pexels.com/photos/46148/aircraft-jet-landing-cloud-46148.jpeg?auto=compress&cs=tinysrgb&w=500",
+    description: "Premium flight with complimentary meal and drinks.",
+    amenities: ["Meal", "Drinks", "Entertainment", "Priority Boarding"],
+    departureStation: "Mumbai Airport (BOM)",
+    arrivalStation: "Goa Airport (GOI)",
+  },
+  {
+    id: "4",
+    from: "Delhi",
+    to: "Jaipur",
+    type: "Train",
+    operator: "Rajdhani Express",
+    departureTime: "04:30 PM",
+    arrivalTime: "10:30 PM",
+    duration: "6h",
+    price: 1200,
+    rating: 4.2,
+    image:
+      "https://images.pexels.com/photos/1658967/pexels-photo-1658967.jpeg",
+    description: "Comfortable AC train with dining car service.",
+    amenities: ["AC", "Meal", "Bedding", "WiFi"],
+    departureStation: "New Delhi Railway Station",
+    arrivalStation: "Jaipur Junction",
+  },
+  {
+    id: "5",
+    from: "Mumbai",
+    to: "Pune",
+    type: "Bus",
+    operator: "RedBus Premium",
+    departureTime: "07:00 AM",
+    arrivalTime: "10:30 AM",
+    duration: "3h 30m",
+    price: 450,
+    rating: 4.0,
+    image:
+      "https://images.pexels.com/photos/33274548/pexels-photo-33274548.jpeg",
+    description: "Premium bus with reclining seats and entertainment.",
+    amenities: ["Reclining Seats", "Entertainment", "WiFi", "Snacks"],
+    departureStation: "Mumbai Central Bus Stand",
+    arrivalStation: "Pune Bus Stand",
+  },
+  {
+    id: "6",
+    from: "Delhi",
+    to: "Agra",
+    type: "Train",
+    operator: "Shatabdi Express",
+    departureTime: "06:00 AM",
+    arrivalTime: "08:15 AM",
+    duration: "2h 15m",
+    price: 800,
+    rating: 4.4,
+    image:
+      "https://images.pexels.com/photos/1658967/pexels-photo-1658967.jpeg",
+    description: "High-speed train with breakfast service.",
+    amenities: ["AC", "Breakfast", "WiFi", "Clean Toilets"],
+    departureStation: "New Delhi Railway Station",
+    arrivalStation: "Agra Cantt",
+  },
+  {
+    id: "7",
+    from: "Bangalore",
+    to: "Chennai",
+    type: "Flight",
+    operator: "SpiceJet",
+    departureTime: "09:30 AM",
+    arrivalTime: "10:45 AM",
+    duration: "1h 15m",
+    price: 3800,
+    rating: 4.0,
+    image:
+      "https://images.pexels.com/photos/164589/pexels-photo-164589.jpeg?auto=compress&cs=tinysrgb&w=500",
+    description: "Budget flight with good connectivity.",
+    amenities: ["Snack", "Entertainment"],
+    departureStation: "Bangalore Airport (BLR)",
+    arrivalStation: "Chennai Airport (MAA)",
+  },
+  {
+    id: "8",
+    from: "Kolkata",
+    to: "Varanasi",
+    type: "Train",
+    operator: "Duronto Express",
+    departureTime: "11:00 PM",
+    arrivalTime: "02:00 PM",
+    duration: "15h",
+    price: 1800,
+    rating: 4.3,
+    image:
+      "https://images.pexels.com/photos/1658967/pexels-photo-1658967.jpeg",
+    description: "Overnight journey with comfortable sleeping arrangements.",
+    amenities: ["AC", "Bedding", "Meal", "Clean Toilets"],
+    departureStation: "Howrah Junction",
+    arrivalStation: "Varanasi Junction",
+  },
+  {
+    id: "9",
+    from: "Hyderabad",
+    to: "Bangalore",
+    type: "Bus",
+    operator: "Orange Tours",
+    departureTime: "08:00 PM",
+    arrivalTime: "06:00 AM",
+    duration: "10h",
+    price: 1200,
+    rating: 4.1,
+    image:
+      "https://images.pexels.com/photos/12480786/pexels-photo-12480786.jpeg",
+    description: "Overnight sleeper bus with reclining seats.",
+    amenities: ["Sleeper Seats", "Blanket", "WiFi", "Water"],
+    departureStation: "Hyderabad Bus Stand",
+    arrivalStation: "Bangalore Bus Stand",
+  },
+  {
+    id: "10",
+    from: "Chennai",
+    to: "Kerala",
+    type: "Train",
+    operator: "Kerala Express",
+    departureTime: "06:30 PM",
+    arrivalTime: "08:00 AM",
+    duration: "13h 30m",
+    price: 1500,
+    rating: 4.2,
+    image:
+      "https://images.pexels.com/photos/159148/regional-train-rail-cars-platform-deutsche-bahn-159148.jpeg",
+    description: "Scenic journey through the Western Ghats.",
+    amenities: ["AC", "Meal", "Bedding", "Scenic Views"],
+    departureStation: "Chennai Central",
+    arrivalStation: "Ernakulam Junction",
+  },
+  {
+    id: "11",
+    from: "Pune",
+    to: "Mumbai",
+    type: "Bus",
+    operator: "MSRTC Premium",
+    departureTime: "05:30 AM",
+    arrivalTime: "08:30 AM",
+    duration: "3h",
+    price: 350,
+    rating: 4.0,
+    image:
+      "https://images.pexels.com/photos/33274548/pexels-photo-33274548.jpeg",
+    description: "Government premium bus with good service.",
+    amenities: ["AC", "Reclining Seats", "Water", "Clean Toilets"],
+    departureStation: "Pune Bus Stand",
+    arrivalStation: "Mumbai Central Bus Stand",
+  },
+  {
+    id: "12",
+    from: "Jaipur",
+    to: "Delhi",
+    type: "Train",
+    operator: "Shatabdi Express",
+    departureTime: "05:45 PM",
+    arrivalTime: "08:00 PM",
+    duration: "2h 15m",
+    price: 800,
+    rating: 4.4,
+    image:
+      "https://images.pexels.com/photos/159148/regional-train-rail-cars-platform-deutsche-bahn-159148.jpeg",
+    description: "Evening return journey with dinner service.",
+    amenities: ["AC", "Dinner", "WiFi", "Clean Toilets"],
+    departureStation: "Jaipur Junction",
+    arrivalStation: "New Delhi Railway Station",
   },
 ];
